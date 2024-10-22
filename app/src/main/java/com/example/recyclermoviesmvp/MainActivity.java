@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.recyclermoviesmvp.adapters.PeliculaAdapter;
+import com.example.recyclermoviesmvp.data.MovieData;
 import com.example.recyclermoviesmvp.json_mapper.Movie;
 import com.example.recyclermoviesmvp.json_mapper.MovieResponse;
 import com.example.recyclermoviesmvp.retrofit.RetrofitClient;
@@ -28,11 +30,14 @@ public class MainActivity extends AppCompatActivity {
         // initRetrofit();
     }
     private RecyclerView recyclerView;
-    // private PeliculaAdapter1 adapter;
+    private PeliculaAdapter adapter;
 
     private void initRecyclerView(){
-       // recyclerView = findViewById(R.id.recyclerViewPeliculas);
+       recyclerView = findViewById(R.id.recyclerViewPeliculas);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter = new PeliculaAdapter(this, MovieData.getMovieList());
+        recyclerView.setAdapter(adapter);
 
         //peliculas = cargarDatos();
 
